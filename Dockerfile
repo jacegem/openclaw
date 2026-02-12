@@ -23,6 +23,9 @@ COPY scripts ./scripts
 
 RUN pnpm install --frozen-lockfile
 
+# 🔴 핵심
+RUN npx -y playwright@latest install-deps
+
 COPY . .
 RUN pnpm build
 # Force pnpm for UI build (Bun may fail on ARM/Synology architectures)
