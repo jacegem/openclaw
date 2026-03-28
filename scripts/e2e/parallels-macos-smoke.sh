@@ -133,6 +133,9 @@ EOF
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    --)
+      shift
+      ;;
     --vm)
       VM_NAME="$2"
       shift 2
@@ -737,6 +740,7 @@ show_gateway_status_compat() {
 
 verify_turn() {
   guest_current_user_cli \
+    /usr/bin/env "OPENAI_API_KEY=$OPENAI_API_KEY_VALUE" \
     "$GUEST_OPENCLAW_BIN" agent \
     --agent main \
     --message "Reply with exact ASCII text OK only." \
